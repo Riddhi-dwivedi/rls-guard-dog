@@ -1,34 +1,79 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { BarChart3, ShieldCheck, Users } from "lucide-react";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800 px-4">
-      <div className="max-w-lg w-full bg-gray-900 rounded-3xl shadow-xl p-10 border border-gray-700 text-center">
-        <h1 className="text-4xl font-bold mb-6 text-indigo-400">Welcome to School Portal</h1>
-        <p className="text-gray-300 mb-8">
-          Manage your classes, track student progress, and view school statistics — all in one secure portal.
-        </p>
-
-        <div className="flex flex-col gap-4 mb-8">
-          <Link
-            href="/login"
-            className="bg-indigo-500 text-white py-3 rounded-xl font-semibold hover:bg-indigo-600 transition-colors"
+    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-800 flex items-center justify-center px-4">
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="max-w-3xl w-full text-center"
+      >
+        {/* Glass card */}
+        <div className="bg-gray-900/70 backdrop-blur-xl border border-gray-700 rounded-3xl shadow-2xl p-10">
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.7 }}
+            className="text-5xl font-extrabold bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent mb-4"
           >
-            Login
-          </Link>
-        </div>
+            Welcome to School Portal
+          </motion.h1>
+          <p className="text-lg text-gray-300 mb-10">
+            A modern way to manage classrooms, track progress, and empower both teachers and students.
+          </p>
 
-        <div className="text-left text-gray-400">
-          <h2 className="font-semibold mb-2">Features:</h2>
-          <ul className="list-disc list-inside space-y-1">
-            <li>Role-based access: Student, Teacher, Head Teacher</li>
-            <li>View and edit progress (teachers/head)</li>
-            <li>Secure login with Supabase auth</li>
-          </ul>
+          {/* Call to Action */}
+          <div className="flex justify-center mb-12">
+            <Link
+              href="/login"
+              className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-3 px-8 rounded-2xl font-semibold shadow-lg hover:opacity-90 transition"
+            >
+              Get Started
+            </Link>
+          </div>
+
+          {/* Features Section */}
+          <div className="grid sm:grid-cols-3 gap-6 text-left">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="p-6 rounded-2xl bg-gray-800/70 border border-gray-700"
+            >
+              <Users className="w-8 h-8 text-indigo-400 mb-3" />
+              <h3 className="font-semibold text-gray-200">Role-based Access</h3>
+              <p className="text-sm text-gray-400 mt-2">
+                Student, Teacher, Head Teacher — each role gets the right access.
+              </p>
+            </motion.div>
+
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="p-6 rounded-2xl bg-gray-800/70 border border-gray-700"
+            >
+              <BarChart3 className="w-8 h-8 text-purple-400 mb-3" />
+              <h3 className="font-semibold text-gray-200">Track Progress</h3>
+              <p className="text-sm text-gray-400 mt-2">
+                Teachers can manage grades, students can see their growth.
+              </p>
+            </motion.div>
+
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="p-6 rounded-2xl bg-gray-800/70 border border-gray-700"
+            >
+              <ShieldCheck className="w-8 h-8 text-green-400 mb-3" />
+              <h3 className="font-semibold text-gray-200">Secure Login</h3>
+              <p className="text-sm text-gray-400 mt-2">
+                Powered by Supabase Auth with enterprise-grade security.
+              </p>
+            </motion.div>
+          </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
